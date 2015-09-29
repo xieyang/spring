@@ -14,6 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -53,10 +54,18 @@ public class userActionTest {
 
 	/**
 	 * addUser方法测试
+	 * @throws Exception 异常
 	 */
 	@Test
-	public void testAddUser() {
+	public void testAddUser() throws Exception {
 		
+//		这样传值后台无法获取
+//		UserDTO user = new UserDTO();
+//		user.setUserName("xieyang");
+//		System.out.println(mvc.perform(MockMvcRequestBuilders.post("/user/add",user)).andReturn().getRequest().getAttribute("user"));
+		
+//		System.out.println(mvc.perform(MockMvcRequestBuilders.post("/user/add").param("userName", "xieyang")).andReturn().getRequest().getAttribute("user"));
+		System.out.println("【result】"+mvc.perform(MockMvcRequestBuilders.post("/user/add?userName=xieyang")).andReturn().getRequest().getAttribute("user"));
 	}
 
 }

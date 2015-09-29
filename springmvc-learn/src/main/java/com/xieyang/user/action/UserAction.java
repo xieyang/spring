@@ -34,9 +34,12 @@ public class UserAction {
 	 */
 	@RequestMapping("/add")
 	public ModelAndView addUser(UserDTO user){
+		System.out.println("【Test】test addUser method.");
+		System.out.println("【Test】param user:"+user);
 		user.setUserName("userName is changed");
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject(user);
+//		modelAndView.addObject(user);//request.getAttribute("user")获取不到值
+		modelAndView.addObject("user",user);
 		modelAndView.setViewName("/userList");
 		return modelAndView;
 	}
