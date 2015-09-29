@@ -31,11 +31,31 @@
       <version>4.10</version>
       <scope>test</scope>
     </dependency>
+    <!-- log -->
+    <dependency>
+		<groupId>log4j</groupId>
+		<artifactId>log4j</artifactId>
+		<version>1.2.17</version>
+	</dependency>
     
+    <!-- apache -->
+    <dependency>
+    	<groupId>org.apache.commons</groupId>
+    	<artifactId>commons-lang3</artifactId>
+    	<version>3.1</version>
+    </dependency>
+    
+    <!-- spring -->
     <dependency>
     	<groupId>org.springframework</groupId>
     	<artifactId>spring-webmvc</artifactId>
     	<version>3.2.4.RELEASE</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-test</artifactId>
+    	<version>3.2.4.RELEASE</version>
+    	<scope>test</scope>
     </dependency>
     
   </dependencies>
@@ -45,8 +65,15 @@
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-compiler-plugin</artifactId>
 			<configuration>
+			<!-- 
+				配置1.7时，mave test报如下错误
+				Caused by: java.lang.UnsupportedClassVersionError: com/xieyang/user/action/userActionTest : Unsupported major.minor version 51.0
+				
 				<source>1.7</source>
 				<target>1.7</target>
+			-->	
+				<source>1.6</source>
+				<target>1.6</target>
 				<encoding>UTF-8</encoding>
 			</configuration>
 		</plugin>
