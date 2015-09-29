@@ -4,9 +4,13 @@
  * 本软件为深圳康拓普开发研制。未经本公司正式书面同意，其他任何个人、团体不得使用、
  * 复制、修改或发布本软件.
  *****************************************************************************/
-package com.xieyang.action;
+package com.xieyang.user.action;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.xieyang.user.model.UserDTO;
 
 /**
  * User Action
@@ -17,6 +21,23 @@ import org.springframework.stereotype.Controller;
  * @version 2015-09-25 xieyang
  */
 @Controller
+@RequestMapping("/user")
 public class UserAction {
 
+	
+	
+	/**
+	 * 添加用户
+	 * 
+	 * @param user 用户
+	 * @return ModelAndView
+	 */
+	@RequestMapping("/add")
+	public ModelAndView addUser(UserDTO user){
+		user.setUserName("userName is changed");
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject(user);
+		modelAndView.setViewName("/userList");
+		return modelAndView;
+	}
 }
