@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * userAction Test
@@ -65,7 +66,20 @@ public class userActionTest {
 //		System.out.println(mvc.perform(MockMvcRequestBuilders.post("/user/add",user)).andReturn().getRequest().getAttribute("user"));
 		
 //		System.out.println(mvc.perform(MockMvcRequestBuilders.post("/user/add").param("userName", "xieyang")).andReturn().getRequest().getAttribute("user"));
-		System.out.println("【result】"+mvc.perform(MockMvcRequestBuilders.post("/user/add?userName=xieyang")).andReturn().getRequest().getAttribute("user"));
+//		System.out.println("【result】"+mvc.perform(MockMvcRequestBuilders.post("/user/add?userName=xieyang")).andReturn().getRequest().getAttribute("user"));
+		ModelAndView object  = mvc.perform(MockMvcRequestBuilders.post("/user/add?userName=xieyang")).andReturn().getModelAndView();
+		System.out.println("【Result】"+object.getModel());
+	}
+	
+	/**
+	 * 测试getUser方法
+	 * @throws Exception 异常
+	 */
+	@Test
+	public void testGetUser() throws Exception{
+		ModelAndView result  = this.mvc.perform(MockMvcRequestBuilders.get("/user/get/123456")).andReturn().getModelAndView();
+		System.out.println("【Test】view:"+result.getViewName());
+		System.out.println("【Test】model:"+result.getModel());
 	}
 
 }

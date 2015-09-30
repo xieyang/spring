@@ -7,6 +7,8 @@
 package com.xieyang.user.action;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,6 +27,24 @@ import com.xieyang.user.model.UserDTO;
 public class UserAction {
 
 	
+	/**
+	 * @param userId userId
+	 * @return String
+	 */
+	@RequestMapping("/get/{userId}")
+	public String getUser(@PathVariable("userId") String userId){
+		System.out.println("【Test】"+"userId:"+userId);
+		return "userMerge";
+	}
+	
+	/**
+	 * @param model model
+	 * @return String
+	 */
+	@RequestMapping("/update")
+	public String updateUser(Model model){
+		return "userList";
+	}
 	
 	/**
 	 * 添加用户
