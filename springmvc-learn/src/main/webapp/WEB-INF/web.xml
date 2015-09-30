@@ -3,6 +3,10 @@
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
 	<!--spring容器初始化  -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
@@ -15,6 +19,8 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/webmvc-servlet.xml</param-value>
 		</init-param>
+		<!-- 该值等于0后者大于0，表示随容器启动初始化servlet，值越小优先级越高 -->
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>webmvc</servlet-name>
