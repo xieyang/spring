@@ -24,6 +24,9 @@ import org.springframework.util.Assert;
  */
 public class AssertTest {
     
+    /**
+     * isNull
+     */
     @Test
     public void testIsNull() {
         Assert.isNull(new Object());
