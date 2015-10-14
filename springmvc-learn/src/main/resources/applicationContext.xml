@@ -12,10 +12,12 @@
 		     http://www.springframework.org/schema/context
 		     http://www.springframework.org/schema/context/spring-context-3.2.xsd
         	 http://www.springframework.org/schema/lang
-        	 http://www.springframework.org/schema/lang/spring-lang-3.2.xsd
-        	 http://www.szcomtop.com/sproc/eventbus
-        	 http://www.szcomtop.com/sproc/eventbus/eventbus-spring-1.0.xsd"
+        	 http://www.springframework.org/schema/lang/spring-lang-3.2.xsd"
         	 default-lazy-init="true">
+	<!-- 扫描spring组件 -->
+	<context:component-scan base-package="com.xieyang">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
 	
 	
 </beans>
