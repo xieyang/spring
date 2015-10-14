@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<!-- Oracle -->
+	<!-- <Resource name="CTDataSource" auth="Container"
+		type="javax.sql.DataSource" username="spcs" password="spcs"
+		driverClassName="oracle.jdbc.OracleDriver" url="jdbc:oracle:thin:@10.10.5.182:1521:orcl"
+		maxActive="200" maxIdle="20" initialSize="20" maxWait="-1"/>  -->
+	<!-- MySQL -->
+	<!-- <Resource name="CTDataSource" auth="Container"
+		type="javax.sql.DataSource" username="root" password="root"
+		driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://10.10.15.133:3306/sproc"
+		maxActive="200" maxIdle="20" initialSize="20" maxWait="-1"/> -->
+</Context>
