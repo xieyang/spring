@@ -11,6 +11,33 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	
+	<filter>
+		<filter-name>FirstFilter</filter-name>
+		<filter-class>com.xieyang.filter.FirstFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>FirstFilter</filter-name>
+		<servlet-name>FirstServlet</servlet-name>
+	</filter-mapping>
+	
+	<servlet>
+		<servlet-name>FirstServlet</servlet-name>
+		<servlet-class>com.xieyang.servlet.FirstServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FirstServlet</servlet-name>
+		<url-pattern>/first</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>SecondServlet</servlet-name>
+		<servlet-class>com.xieyang.servlet.SecondServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SecondServlet</servlet-name>
+		<url-pattern>/second</url-pattern>
+	</servlet-mapping>
+	
 	<!-- spring mvc -->
 	<servlet>
 		<servlet-name>webmvc</servlet-name>
