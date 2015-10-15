@@ -81,5 +81,15 @@ public class userActionTest {
 		System.out.println("【Test】view:"+result.getViewName());
 		System.out.println("【Test】model:"+result.getModel());
 	}
+	
+	/**
+	 * 测试deleteUser方法
+	 * @throws Exception 异常
+	 */
+	@Test
+	public void testDeleteUser() throws Exception{
+		String strViewName = this.mvc.perform(MockMvcRequestBuilders.delete("/user/delete/abc123")).andReturn().getModelAndView().getViewName();
+		System.out.println("【Test】"+strViewName);
+	}
 
 }
