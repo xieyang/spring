@@ -25,10 +25,10 @@ import javax.servlet.http.HttpServletResponse;
 public class SecondServlet extends HttpServlet {
     
     /**
-     * @param req
-     * @param resp
-     * @throws ServletException
-     * @throws IOException
+     * @param req req
+     * @param resp resp
+     * @throws ServletException ServletException
+     * @throws IOException IOException
      * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest,
      *      javax.servlet.http.HttpServletResponse)
      */
@@ -39,10 +39,10 @@ public class SecondServlet extends HttpServlet {
     }
     
     /**
-     * @param req
-     * @param resp
-     * @throws ServletException
-     * @throws IOException
+     * @param req req
+     * @param resp resp
+     * @throws ServletException ServletException
+     * @throws IOException IOException
      * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest,
      *      javax.servlet.http.HttpServletResponse)
      */
@@ -53,7 +53,7 @@ public class SecondServlet extends HttpServlet {
     }
     
     /**
-     * @throws ServletException
+     * @throws ServletException ServletException
      * @see javax.servlet.GenericServlet#init()
      */
     @Override

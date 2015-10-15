@@ -27,8 +27,8 @@ import javax.servlet.ServletResponse;
 public class FirstFilter implements Filter {
     
     /**
-     * @param filterConfig
-     * @throws ServletException
+     * @param filterConfig filterConfig
+     * @throws ServletException ServletException
      * @see javax.servlet.Filter#init(javax.servlet.FilterConfig)
      */
     @Override
@@ -37,11 +37,11 @@ public class FirstFilter implements Filter {
     }
     
     /**
-     * @param request
-     * @param response
-     * @param chain
-     * @throws IOException
-     * @throws ServletException
+     * @param request request
+     * @param response response
+     * @param chain chain
+     * @throws IOException IOException
+     * @throws ServletException ServletException
      * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest, javax.servlet.ServletResponse,
      *      javax.servlet.FilterChain)
      */
