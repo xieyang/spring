@@ -77,7 +77,7 @@ public class userActionTest {
 	 */
 	@Test
 	public void testGetUser() throws Exception{
-		ModelAndView result  = this.mvc.perform(MockMvcRequestBuilders.get("/user/get/123456")).andReturn().getModelAndView();
+		ModelAndView result  = this.mvc.perform(MockMvcRequestBuilders.get("/user/view/123456")).andReturn().getModelAndView();
 		System.out.println("【Test】view:"+result.getViewName());
 		System.out.println("【Test】model:"+result.getModel());
 	}

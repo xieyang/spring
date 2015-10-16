@@ -6,7 +6,11 @@
  *****************************************************************************/
 package com.xieyang.user.action;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,46 +21,16 @@ import com.xieyang.user.model.UserDTO;
 /**
  * User Action
  * 
- * <p>标准的请求方式</p>
- * <p>
- * 	类名、文件名尽可能清楚，方便查找</br>
- * 	方法名尽可能简单明了</br>
- * </p>
+ * <p>标准Restful的请求方式</p>
  *
  * @author  xieyang
  * @since   1.0
- * @version 2015-09-25 xieyang
+ * @version 2015-10-16 xieyang
  */
 @Controller
-@RequestMapping("/user")
-public class UserAction {
-	
-	/**
-	 * 进入首页
-	 * 
-	 * <p>首页常用词汇：index</p>
-	 * 
-	 * @return String
-	 */
-	@RequestMapping(method=RequestMethod.GET)
-	public String index(){
-		return "/user/index";
-	}
-	
-	
-	/**
-	 * 列表
-	 * 
-	 * <p>列表展示常用词汇：query、list、count</p>
-	 * 
-	 * @param condition condition
-	 * @return String
-	 */
-	@RequestMapping(value="/list",method=RequestMethod.GET,params={"username"})
-	public String list(UserDTO condition){
-		return "/user/list";
-	}
-	
+@RequestMapping("/api/user")
+public class UserAjaxAction {
+
 	
 	/**
 	 * 
@@ -72,13 +46,13 @@ public class UserAction {
 	}
 	
 	/**
-	 * <p>修改常用词汇：edit、update、merge</p>
+	 * <p>修改常用词汇：edit、update</p>
 	 * 
-	 * @param user user
+	 * @param model model
 	 * @return String
 	 */
 	@RequestMapping("/update")
-	public String update(UserDTO user){
+	public String update(Model model){
 		return "userList";
 	}
 	
@@ -115,6 +89,20 @@ public class UserAction {
 		System.out.println("【Test】test deleteUser method");
 		System.out.println("【Test】param userId:"+userId);
 		return "userList";
+	}
+	
+	
+	/**
+	 * 查询用户数据
+	 * 
+	 * <p>列表展示常用词汇：query、list、count</p>
+	 * 
+	 * @param condition condition
+	 * @return List
+	 */
+	@RequestMapping(value="/query",method=RequestMethod.GET,params={"username"})
+	public List<UserDTO> list(UserDTO condition){
+		return new ArrayList<UserDTO>();
 	}
 	
 }
