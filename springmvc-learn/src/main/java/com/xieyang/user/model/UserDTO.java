@@ -24,7 +24,7 @@ public class UserDTO {
 	/**
 	 * userID
 	 */
-	private String userID;
+	private String userId;
 	/**
 	 * userName
 	 */
@@ -37,18 +37,6 @@ public class UserDTO {
 	 * birthday
 	 */
 	private Date birthday;
-	/**
-	 * @return 获取 userID属性值
-	 */
-	public String getUserID() {
-		return userID;
-	}
-	/**
-	 * @param userID 设置 userID 属性值为参数值 userID
-	 */
-	public void setUserID(String userID) {
-		this.userID = userID;
-	}
 	/**
 	 * @return 获取 userName属性值
 	 */
@@ -84,6 +72,18 @@ public class UserDTO {
 	 */
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
+	}
+	/**
+	 * @return 获取 userId属性值
+	 */
+	public String getUserId() {
+		return userId;
+	}
+	/**
+	 * @param userId 设置 userId 属性值为参数值 userId
+	 */
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

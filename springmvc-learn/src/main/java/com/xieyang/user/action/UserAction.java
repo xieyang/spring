@@ -7,11 +7,13 @@
 package com.xieyang.user.action;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
+import com.xieyang.user.UserConstants;
 import com.xieyang.user.model.UserDTO;
 
 /**
@@ -32,6 +34,22 @@ import com.xieyang.user.model.UserDTO;
 public class UserAction {
 	
 	/**
+	 * 初始化user参数
+	 * 
+	 * <p>
+	 * 	该方法为了测试@ModelAttribute的使用
+	 * </p>
+	 * 
+	 * @return UserDTO
+	 */
+//	@ModelAttribute("user")
+//	public UserDTO initUser(){
+//		UserDTO userDTO = new UserDTO();
+//		userDTO.setUserName("xy");
+//		return userDTO;
+//	}
+	
+	/**
 	 * 进入首页
 	 * 
 	 * <p>首页常用词汇：index</p>
@@ -40,7 +58,7 @@ public class UserAction {
 	 */
 	@RequestMapping(method=RequestMethod.GET)
 	public String index(){
-		return "/user/index";
+		return "/user/userIndex";
 	}
 	
 	
@@ -54,7 +72,8 @@ public class UserAction {
 	 */
 	@RequestMapping(value="/list",method=RequestMethod.GET,params={"username"})
 	public String list(UserDTO condition){
-		return "/user/list";
+		//TODO 如何模拟数据
+		return "/user/userList";
 	}
 	
 	
@@ -62,48 +81,95 @@ public class UserAction {
 	 * 
 	 * <p>查看常用词汇：view、get</p>
 	 * 
+	 * <p>
+	 * 	springmvc在调用方法之前会创建一个隐含数据模型对象，
+	 * 	如果方法参数是Model、Map、ModelMap，spingmvc
+	 *  会将该隐含数据模型对象的引用传入給这些类型
+	 * </p>
+	 * 
 	 * @param userId userId
+	 * @param model model
 	 * @return String
 	 */
 	@RequestMapping(value = "/view/{userId}",method=RequestMethod.GET)
-	public String view(@PathVariable("userId") String userId){
+	public String view(@PathVariable("userId") String userId,ModelMap model){
 		System.out.println("【Test】"+"userId:"+userId);
-		return "userMerge";
+		model.addAttribute("user", new UserDTO());
+		model.put("operation", UserConstants.READONLY);
+		return "/user/userEdit";
 	}
 	
 	/**
-	 * <p>修改常用词汇：edit、update、merge</p>
+	 * 进入编辑
 	 * 
 	 * @param user user
+	 * @param model model
 	 * @return String
 	 */
-	@RequestMapping("/update")
-	public String update(UserDTO user){
-		return "userList";
+	@RequestMapping(value="/update",method=RequestMethod.GET)
+	public String updatePage(@ModelAttribute("user")UserDTO user,ModelMap model){
+//	public String update(UserDTO user){//即使user参数没有@ModelAttribute注解，也会将该user放入到model中，key是userDTO
+		user.setAge(21);
+		System.out.println("【Test】"+user);
+		System.out.println("【Test】"+model);
+		model.addAttribute("operation",UserConstants.UPDATE);
+		return "/user/userEdit";
 	}
 	
 	/**
-	 * 添加用户
+	 * 编辑
+	 * 
+	 * <p>
+	 * 	修改常用词汇：edit、update、merge
+	 * 	@ModelAttribute 注解后的参数将会加入到model中
+	 * 	@ModelAttribute 该注解也可注解方法；注解后的方法的返回值会加入到model中；该方法在调用处理请求方法之前调用。
+	 * </p>
+	 * 
+	 * @param user user
+	 * @param model model
+	 * @return String
+	 */
+	@RequestMapping(value="/update",method=RequestMethod.POST)
+	public String update(@ModelAttribute("user")UserDTO user,ModelMap model){
+		return "/user/userList";
+	}
+	
+	/**
+	 * 进入新增
+	 * 
+	 * @param user user
+	 * @param model model
+	 * @return String
+	 */
+	@RequestMapping(value="/add",method=RequestMethod.GET)
+	public String addPage(UserDTO user,ModelMap model){
+		model.put("operation", UserConstants.ADD);
+		return "/user/userEdit";
+	}
+	
+	/**
+	 * 添加
 	 * 
 	 * <p>新增常用词汇：add、save、create</p>
 	 * 
-	 * @param user 用户
-	 * @return ModelAndView
+	 * @param user user
+	 * @param model model
+	 * @return String 
 	 */
-	@RequestMapping("/add")
-	public ModelAndView add(UserDTO user){
-		System.out.println("【Test】test addUser method.");
-		System.out.println("【Test】param user:"+user);
-		user.setUserName("userName is changed");
-		ModelAndView modelAndView = new ModelAndView();
+	@RequestMapping(value="/add",method=RequestMethod.POST)
+//	public ModelAndView add(UserDTO user){
+	public String add(UserDTO user,ModelMap model){
+		System.out.println("【Test】user:"+user);
+		return "/user/userList";
+//		ModelAndView modelAndView = new ModelAndView();
 //		modelAndView.addObject(user);//request.getAttribute("user")获取不到值
-		modelAndView.addObject("user",user);
-		modelAndView.setViewName("/userList");
-		return modelAndView;
+//		modelAndView.addObject("user",user);
+//		modelAndView.setViewName("/user/userList");
+//		return modelAndView;
 	}
 	
 	/**
-	 * 删除用户
+	 * 删除
 	 * 
 	 * <p>使用HTTP标准的请求方式 get post put delete</p>
 	 * <p>表单需使用post请求，使用"_method"指定那种请求</p>
@@ -114,7 +180,7 @@ public class UserAction {
 	public String delete(@PathVariable("userId") String userId){
 		System.out.println("【Test】test deleteUser method");
 		System.out.println("【Test】param userId:"+userId);
-		return "userList";
+		return "/user/userList";
 	}
 	
 }

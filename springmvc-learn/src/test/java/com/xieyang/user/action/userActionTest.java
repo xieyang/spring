@@ -72,22 +72,34 @@ public class userActionTest {
 	}
 	
 	/**
-	 * 测试getUser方法
+	 * 测试update
 	 * @throws Exception 异常
 	 */
 	@Test
-	public void testGetUser() throws Exception{
+	public void testUpdate() throws Exception{
+//		ModelAndView result = mvc.perform(MockMvcRequestBuilders.post("/user/update?userId=abc123&userName=xieyang")).andReturn().getModelAndView();
+		ModelAndView result = mvc.perform(MockMvcRequestBuilders.get("/user/update?userId=abc123&userName=xieyang")).andReturn().getModelAndView();
+		System.out.println("【Test】view:"+result.getViewName());
+		System.out.println("【Test】model:"+result.getModel());
+	}
+	
+	/**
+	 * 测试view方法
+	 * @throws Exception 异常
+	 */
+	@Test
+	public void testView() throws Exception{
 		ModelAndView result  = this.mvc.perform(MockMvcRequestBuilders.get("/user/view/123456")).andReturn().getModelAndView();
 		System.out.println("【Test】view:"+result.getViewName());
 		System.out.println("【Test】model:"+result.getModel());
 	}
 	
 	/**
-	 * 测试deleteUser方法
+	 * 测试delete方法
 	 * @throws Exception 异常
 	 */
 	@Test
-	public void testDeleteUser() throws Exception{
+	public void testDelete() throws Exception{
 		String strViewName = this.mvc.perform(MockMvcRequestBuilders.delete("/user/delete/abc123")).andReturn().getModelAndView().getViewName();
 		System.out.println("【Test】"+strViewName);
 	}
