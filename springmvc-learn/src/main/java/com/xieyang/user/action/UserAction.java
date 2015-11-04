@@ -24,6 +24,11 @@ import com.xieyang.user.model.UserDTO;
  * 	类名、文件名尽可能清楚，方便查找</br>
  * 	方法名尽可能简单明了</br>
  * </p>
+ * <p>
+ * 	@RequestParam 请求的参数绑定入参
+ *  @RequestHeader 请求报文绑定入参
+ *  @CookieValue cookie绑定入参数
+ * </p>
  *
  * @author  xieyang
  * @since   1.0
@@ -66,11 +71,16 @@ public class UserAction {
 	 * 列表
 	 * 
 	 * <p>列表展示常用词汇：query、list、count</p>
+	 * <p>RequestMapping可通过params,headers根据精准定位请求</p>
+	 * <p>params="username=xieyang"</p>
+	 * <p>params={"username!=xieyang","sex=woman"}</p>
+	 * <p>headers指定报文头</p>
+	 * <p>headers="content-type=text/*"</p>
 	 * 
 	 * @param condition condition
 	 * @return String
 	 */
-	@RequestMapping(value="/list",method=RequestMethod.GET,params={"username"})
+	@RequestMapping(value="/list",method=RequestMethod.GET,params="username")
 	public String list(UserDTO condition){
 		//TODO 如何模拟数据
 		return "/user/userList";

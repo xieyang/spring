@@ -22,6 +22,10 @@ import com.xieyang.user.model.UserDTO;
  * User Action
  * 
  * <p>标准Restful的请求方式</p>
+ * 
+ * <p>使用HTTP标准的请求方式 get post put delete</p>
+*  <p>表单需使用post请求，使用"_method"指定那种请求</p>
+*  <p>spring mvc的URL支持Ant风格，即**，*，？模糊匹配</p>
  *
  * @author  xieyang
  * @since   1.0
@@ -79,8 +83,6 @@ public class UserAjaxAction {
 	/**
 	 * 删除用户
 	 * 
-	 * <p>使用HTTP标准的请求方式 get post put delete</p>
-	 * <p>表单需使用post请求，使用"_method"指定那种请求</p>
 	 * @param userId userId
 	 * @return view
 	 */
