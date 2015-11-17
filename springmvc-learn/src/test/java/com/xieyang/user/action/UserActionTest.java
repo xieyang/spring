@@ -32,7 +32,7 @@ import org.springframework.web.servlet.ModelAndView;
 @WebAppConfiguration
 @ContextConfiguration("file:src/main/webapp/WEB-INF/webmvc-servlet.xml")
 //@ContextConfiguration("/WEB-INF/webmvc-servlet.xml") 这么配置找不到文件
-public class userActionTest {
+public class UserActionTest {
 	
 	/**
 	 * context
@@ -67,7 +67,7 @@ public class userActionTest {
 		
 //		System.out.println(mvc.perform(MockMvcRequestBuilders.post("/user/add").param("userName", "xieyang")).andReturn().getRequest().getAttribute("user"));
 //		System.out.println("【result】"+mvc.perform(MockMvcRequestBuilders.post("/user/add?userName=xieyang")).andReturn().getRequest().getAttribute("user"));
-		ModelAndView object  = mvc.perform(MockMvcRequestBuilders.post("/user/add?userName=xieyang")).andReturn().getModelAndView();
+		ModelAndView object  = mvc.perform(MockMvcRequestBuilders.post("/user/add?userName=xieyang&birthday=1986-03-02")).andReturn().getModelAndView();
 		System.out.println("【Result】"+object.getModel());
 	}
 	
